@@ -8,6 +8,7 @@ function M:set_lang(IME,convert_key)
   local key = convert_key or false
   local ime = IME or false
   if ime ~= false then
+    print(ime)
     os.execute("ibus engine " .. ime)
     return true
   end
@@ -26,4 +27,3 @@ function M:set()
 end
 
 return M
-

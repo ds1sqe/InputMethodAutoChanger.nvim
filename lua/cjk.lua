@@ -10,23 +10,26 @@
 
 
 local M = {}
-vim.g.inputInCjk=false
 
+vim.g.inputInCjk=false
+vim.g.IME_CJK="korean"
+vim.g.IME_ENG="xkb:us::eng"
+vim.g.convertKey=false
+
+-- local defaultOptions={IME_CJK = "korean",IME_ENG = "xkb:us::eng",convertKey =false}
 
 --TODO global varliable for OS, convert flag etc
 
--- Importing Options first
-M.opt = require("cjk.options")
+function M.setup()
+  M.cjk = require("cjk.cjkfunc")
+  -- require("cjk.options").set()
 
-function M.setup(userOption)
-  M.opt.set(userOption)
-  M.cjk = require("cjk.cjkfunc").new(M.opt.IME_CJK,M.opt.IME_ENG,M.opt.convertKey)
-
-  if M:getOS()=="Linux"then
-    require("linux").set()
-  end if M:getOS()=="Darwin"then
-    require("macos").set()
-  end
+  -- if M.cjk.getOS()=="Linux"then
+  --   print("linux")
+  --   require("linux").set()
+  -- end if M.cjk.getOS()=="Darwin"then
+  --   require("macos").set()
+end
 
 local autoToggleCjk= vim.api.nvim_create_augroup("AutoggleCjk", { clear = true })
 vim.api.nvim_create_autocmd("InsertLeave", {
@@ -42,17 +45,16 @@ vim.api.nvim_create_autocmd("InsertEnter", {
   group = autoToggleCjk,
   pattern = "*",
   callback = function()
-    M.cjk.InputToNormal()
+    M.cjk.NormalToInput()
   end,
   desc = "NormalToInput",
 })
-end
-
 -- reset options
-function M.reset(userOption)
+function M.reset()
   M.cjk = nil
-  M.setup(userOption)
+  M.setup()
   vim.g.inputInCjk=false
 end
 
 return M
+
