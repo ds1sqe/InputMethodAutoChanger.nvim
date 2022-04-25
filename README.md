@@ -13,4 +13,5 @@ you can use this plugin at your main config,
   use 'ds1sqe/InputMethodAutoChanger.nvim' </code>
   
 <code>require('imac').setup("Target Language Input Method","Eng Input Method","Debug option(true/false) ") </code>
+
 [![Video Label](http://img.youtube.com/vi/7kj8mwXaZf0/0.jpg)](https://youtu.be/7kj8mwXaZf0?t=0s)
