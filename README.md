@@ -12,4 +12,4 @@ you can use this plugin at your main config,
 <code>
   use 'ds1sqe/InputMethodAutoChanger.nvim' </code>
   
-<code>require('imac').setup("Target Language Input Method","Eng Input Method","debug Option(true/false) ") </code>
+<code>require('imac').setup("Target Language Input Method","Eng Input Method","Debug option(true/false) ") </code>
