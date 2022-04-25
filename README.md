@@ -3,4 +3,4 @@
 
 currently only available on linux - ibus only
 you can use this plugin at your main config,
-<code > require('imac').setup("hangul","xkb:us::eng",false)
+<code > require('imac').setup("hangul","xkb:us::eng",false) </code>
