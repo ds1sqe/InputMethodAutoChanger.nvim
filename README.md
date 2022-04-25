@@ -1,5 +1,5 @@
 # InputMethodAutoChanger.nvim
-## Automatticaly Change Input Method in neovim
+## Automatically Change Input Method in neovim
 if you use Non-English Langauge in Input Mode, automatically change to English when you leave Input Mode
 
 And you come back to Input Mode, change to Non-English Langauge what you used in Input mode
