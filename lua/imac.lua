@@ -10,18 +10,18 @@
 
 local M = {}
 
-
 --TODO global varliable for OS, convert flag etc
 
 require("notify")("IMAC init")
 
 vim.g.inputInTarget=false
 vim.g.imac_DEBUGMODE=false
-vim.g.imac_OS= ""
+vim.g.imac_linux=false
+vim.g.imac_macos=false
+vim.g.imac_windows=false
 vim.g.IME_Target= ""
 vim.g.IME_ENG= ""
-vim.g.InputColor_Eng = ""
-vim.g.InputColor_Target = ""
+vim.g.imSelectPath=""
 
 -- Setup function. you can use this at your main config , like require('imac').setup("hangul","xkb:us::eng",false)
 -- @param ime_Target => target inputMethod, Non English ex) "hangul"

@@ -9,7 +9,7 @@ function M.set_lang(inputMethoad)
   if inputMethoad ~= "" then
     os.execute("ibus engine " .. inputMethoad)
     if vim.g.imac_DEBUGMODE == true then
-      require("notify")("Linux(set) : ibus engine "..inputMethoad)
+      require("notify")("imac.linux(set) : ibus engine "..inputMethoad)
     end
   end
 end
@@ -19,13 +19,18 @@ function M.get_language()
     local result = string.gsub(handle:read("*a"),"[\n\r]","")
     handle:close()
       if vim.g.imac_DEBUGMODE == true then
-    require("notify")("Linux(get) : ibus engine " .. result)
+    require("notify")("imac.linux(get) : ibus engine " .. result)
     end
   return result
 end
 
 function M.set()
+  if vim.g.IME_ENG=="" then
+    vim.g.IME_ENG="xkb:us::eng"
+  end
+  if vim.g.IME_Target=="hangul" then
   os.execute('gsettings set org.freedesktop.ibus.engine.hangul off-keys \'\'')
+  end
 end
 
 return M
