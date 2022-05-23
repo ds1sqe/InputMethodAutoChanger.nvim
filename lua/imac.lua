@@ -10,7 +10,8 @@
 
 local M = {}
 
---TODO global varliable for OS, convert flag etc
+--TODO Fix a color - background problems
+-- Highlight group Normal doesen't have any background Color.
 
 require("notify")("IMAC init")
 
@@ -22,6 +23,7 @@ vim.g.imac_windows=false
 vim.g.IME_Target= ""
 vim.g.IME_ENG= ""
 vim.g.imSelectPath=""
+
 
 -- Setup function. you can use this at your main config , like require('imac').setup("hangul","xkb:us::eng",false)
 -- @param ime_Target => target inputMethod, Non English ex) "hangul"
