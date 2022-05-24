@@ -24,7 +24,6 @@ vim.g.IME_Target= ""
 vim.g.IME_ENG= ""
 vim.g.imSelectPath=""
 
-
 -- Setup function. you can use this at your main config , like require('imac').setup("hangul","xkb:us::eng",false)
 -- @param ime_Target => target inputMethod, Non English ex) "hangul"
 -- @param ime_eng => Eng inputMethod, English ex) "xkb:us::eng"

@@ -12,7 +12,7 @@ function M.set(ime_target,ime_eng,debug_mode)
   M.getOS()
 
   if vim.g.imac_DEBUGMODE==true then
-    require("notify")("Options: Target:"..ime_target.." | Eng: "..ime_eng.." | Debug: "..tostring(debug_mode).. " | OS: "..vim.g.imac_OS)
+    require("notify")("Options: Target:"..ime_target.." | Eng: "..ime_eng.." | Debug: "..tostring(debug_mode) )
   end
 end
 
