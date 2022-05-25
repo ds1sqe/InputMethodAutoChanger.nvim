@@ -1,13 +1,12 @@
 # InputMethodAutoChanger.nvim
 ## Automatically Change Input Method in neovim
-if you use Non-English Language in Input Mode, automatically change to English when you leave Input Mode
+If you use a Non-English Language while in Input Mode, The input language is automatically changed to English when you leave Input Mode
 
-And you come back to Input Mode, change to Non-English Language what you used in Input mode
+And When you return to Input Mode, the Input Langauge revert to the Original Non-English Language
 
-currently only available on linux - ibus only
+Currently we can use this on Linux-Ibus and Mac OS
 
-
-you can use this plugin at your main config,
+you can use this plugin on your main config,
 
 <code>
   use 'ds1sqe/InputMethodAutoChanger.nvim' </code>
