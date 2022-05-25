@@ -3,6 +3,9 @@
 local M = {}
 
 function M.set(ime_target,ime_eng,debug_mode)
+  if ime_target~="" then
+    vim.g.IME_Target=ime_target
+  end
   vim.g.IME_Target=ime_target
   if ime_eng~= "" then
     vim.g.IME_ENG=ime_eng

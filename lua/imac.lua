@@ -5,13 +5,10 @@
 -- ██║ ██║ ╚═╝ ██║ ██║  ██║ ╚██████╗ ██╗ ███████╗╚██████╔╝ ██║  ██║
 -- ╚═╝ ╚═╝     ╚═╝ ╚═╝  ╚═╝  ╚═════╝ ╚═╝ ╚══════╝ ╚═════╝  ╚═╝  ╚═╝
 -- InputMethodAutoChanger
--- For non English user who want to change Automatically between English and None English
+-- For non English user who want to change Automatically between English and Non-English
 -- @auther ds1sqe@mensakorea.org
 
 local M = {}
-
---TODO Fix a color - background problems
--- Highlight group Normal doesen't have any background Color.
 
 require("notify")("IMAC init")
 
