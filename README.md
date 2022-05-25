@@ -5,7 +5,8 @@ If you use a Non-English Language while in Input Mode, The input language is aut
 And When you return to Input Mode, the Input Langauge revert to the Original Non-English Language
 
 Currently we can use this on Linux-Ibus and Mac OS
-Windows support is currently work-on-progress
+
+and Windows support is currently work-on-progress
 
 you can use this plugin on your main config,
 
