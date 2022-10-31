@@ -22,7 +22,6 @@ end
 function M.getOS()
   local handle = io.popen("uname")
   if handle ~= nil then
-
     local result = string.gsub(handle:read("*a"), "[\n\r]", "")
     handle:close()
     if result == "Linux" then
