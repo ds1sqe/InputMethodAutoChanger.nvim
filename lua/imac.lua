@@ -30,27 +30,31 @@ function M.setup(ime_target, ime_eng, debug_mode)
     if vim.g.imac_DEBUGMODE == true then
         print("Imac Loaded")
     end
+
     M.imac = require("imac.func")
+
+    local inputMethodAutoChanger = vim.api.nvim_create_augroup("InputMethodAutoChanger", { clear = true })
+
+    vim.api.nvim_create_autocmd("InsertLeave", {
+        group = inputMethodAutoChanger,
+        pattern = "*",
+        callback = function()
+            M.imac.InputToNormal()
+        end,
+        desc = "InputToNormal",
+    })
+
+    vim.api.nvim_create_autocmd("InsertEnter", {
+        group = inputMethodAutoChanger,
+        pattern = "*",
+        callback = function()
+            M.imac.NormalToInput()
+        end,
+        desc = "NormalToInput",
+    })
+
 end
 
-local inputMethodAutoChanger = vim.api.nvim_create_augroup("InputMethodAutoChanger", { clear = true })
-vim.api.nvim_create_autocmd("InsertLeave", {
-    group = inputMethodAutoChanger,
-    pattern = "*",
-    callback = function()
-        M.imac.InputToNormal()
-    end,
-    desc = "InputToNormal",
-})
-
-vim.api.nvim_create_autocmd("InsertEnter", {
-    group = inputMethodAutoChanger,
-    pattern = "*",
-    callback = function()
-        M.imac.NormalToInput()
-    end,
-    desc = "NormalToInput",
-})
 -- unload options
 function M.unload()
     M.imac = nil
