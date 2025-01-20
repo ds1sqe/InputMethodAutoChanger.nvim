@@ -6,9 +6,12 @@ local M = {
 
 function M.setup(config)
   M.config = config
-  M.im_select_path = config.imSelectPath
+  M.im_select_path = M.config.imSelectPath
   if M.im_select_path == "" then
-    M.im_select_path = vim.fn.stdpath("data") .. "/InputMethodAutoChanger.nvim/im_select/im-select.exe"
+    M.im_select_path = vim.fn.stdpath("data") .. "/lazy/InputMethodAutoChanger.nvim/im_select/im-select.exe"
+    if M.config.debug then
+      print("IMAC> im_select_path(wsl): " .. M.im_select_path)
+    end
   end
 end
 
@@ -21,6 +24,9 @@ function M.get_language()
   if handle ~= nil then
     local result = string.gsub(handle:read("*a"), "[\n\r]", "")
     handle:close()
+    if M.config.debug then
+      print("IMAC> get_language(wsl): " .. result)
+    end
     return result
   else
   end

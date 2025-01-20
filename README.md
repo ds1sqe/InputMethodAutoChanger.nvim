@@ -52,16 +52,19 @@ Default configuration
     },
   },
   wsl = { -- Config for window wsl-linux
-    IME_ENG = "eng_wsl",
-    IME_Target = "tgt_wsl",
+    IME_ENG = "1033",
+    IME_Target = "1042",
   },
   windows = { -- Config for windows
-    IME_ENG = "eng_win",
-    IME_Target = "tgt_win",
+    IME_ENG = "1033",
+    IME_Target = "1042",
   },
   debug = false,
   imSelectPath = "",
 },
 ```
+
+On windows or wsl, you have to add english locale (1033)
+goto Settings>Time/Locale/Langauge>Langauge and Region>Add Locale
 
 [![Video Label](http://img.youtube.com/vi/7kj8mwXaZf0/0.jpg)](https://youtu.be/7kj8mwXaZf0?t=0s)

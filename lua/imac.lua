@@ -31,7 +31,8 @@ function M.setup(config)
 
   if M.state.is_remote then
     if M.DEBUG_MODE then
-      print("IMAC> disabled due to is remote" .. M.inspect(M))
+      print("IMAC> disabled due to is remote")
+      return
     end
   end
 

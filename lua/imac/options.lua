@@ -17,12 +17,12 @@ local M = {
       },
     },
     wsl = {
-      IME_ENG = "eng_wsl",
-      IME_Target = "tgt_wsl",
+      IME_ENG = "1033",
+      IME_Target = "1042",
     },
     windows = {
-      IME_ENG = "eng_win",
-      IME_Target = "tgt_win",
+      IME_ENG = "1033",
+      IME_Target = "1042",
     },
     debug = false,
     imSelectPath = "",
@@ -51,12 +51,11 @@ function M.set(config, root)
         else
           root.state.is_windows = true
         end
-        root.state.config = conf
       end
     end
   end
+  root.state.config = conf
   root.state.is_remote = M.check_remote()
-
   root.state.DEBUG_MODE = conf.debug
 end
 

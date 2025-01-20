@@ -8,7 +8,7 @@ function M.setup(config)
   M.config = config
   M.im_select_path = config.imSelectPath
   if M.im_select_path == "" then
-    M.im_select_path = vim.fn.stdpath("data") .. "\\InputMethodAutoChanger.nvim\\im_select\\im-select.exe"
+    M.im_select_path = vim.fn.stdpath("data") .. "\\lazy\\InputMethodAutoChanger.nvim\\im_select\\im-select.exe"
   end
 end
 
