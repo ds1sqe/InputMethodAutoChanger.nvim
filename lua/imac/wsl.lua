@@ -33,7 +33,8 @@ function M.get_language()
 end
 
 function M.check_mode()
-  return M.get_language() == M.config.wsl.IME_Target
+  -- return M.get_language() == M.config.wsl.IME_Target
+  return true -- return only true because has inner state
 end
 
 function M.to_eng()
