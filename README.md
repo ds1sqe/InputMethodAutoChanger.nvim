@@ -4,27 +4,67 @@ If you use a Non-English Language while in Input Mode, The input language is aut
 
 And When you return to Input Mode, the Input Langauge revert to the Original Non-English Language
 
-Currently we can use this on Linux-Ibus and Mac OS
-
-and Windows support is currently work-on-progress
-
 You can use this plugin on your main config as below,
 
 To import my plugin with vimplug or etc,
 
-<code>use 'ds1sqe/InputMethodAutoChanger.nvim' </code>
-  
+``` lua
+-- packer-like
+use 'ds1sqe/InputMethodAutoChanger.nvim' 
+-- lazy-like
+{
+    "ds1sqe/InputMethodAutoChanger.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("imac").setup(
+        {
+          debug = true,
+        }
+      )
+    end,
+}
+```
 
 And setup with,
+``` lua
+require("imac").setup(
+  {
+     debug = false,
+  }
+)
+```
 
-<code>require('imac').setup("Target Language Input Method","Eng Input Method","Debug option(true/false) ") </code>
+Default configuration 
+``` lua
+{
+  macos = { -- Config for Macos
+    IME_ENG = "com.apple.keylayout.ABC",
+    IME_Target = "com.apple.inputmethod.Korean.2SetKorean",
+  },
+  linux = {
+    ibus = { -- Config for Linux-Ibus
+      IME_ENG = "xkb:us::eng",
+      IME_Target = "hangul",
+    },
+    fcitx = { -- Config for Linux-fcitx5
+      IME_ENG = "keyboard-us",
+      IME_Target = "hangul",
+    },
+  },
+  wsl = { -- Config for window wsl-linux
+    IME_ENG = "1033",
+    IME_Target = "1042",
+  },
+  windows = { -- Config for windows
+    IME_ENG = "1033",
+    IME_Target = "1042",
+  },
+  debug = false,
+  imSelectPath = "",
+},
+```
 
-Example on linux
-
-<code>require('imac').setup("hangul","xkb:us::eng",false) </code>
-
-Example on MacOS
-
-<code>require('imac').setup("com.apple.keylayout.ABC","com.apple.inputmethod.Korean.2SetKorean",true) </code>
+On windows or wsl, you have to add english locale (1033)
+goto Settings>Time/Locale/Langauge>Langauge and Region>Add Locale
 
 [![Video Label](http://img.youtube.com/vi/7kj8mwXaZf0/0.jpg)](https://youtu.be/7kj8mwXaZf0?t=0s)
