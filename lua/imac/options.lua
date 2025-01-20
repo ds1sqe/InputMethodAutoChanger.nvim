@@ -1,39 +1,62 @@
 -- Options for Plugin
 
-local M = {}
+local M = {
+  default = {
+    macos = {
+      IME_ENG = "com.apple.keylayout.ABC",
+      IME_Target = "com.apple.inputmethod.Korean.2SetKorean",
+    },
+    linux = {
+      ibus = {
+        IME_ENG = "xkb:us::eng",
+        IME_Target = "hangul",
+      },
+      fcitx = {
+        IME_ENG = "keyboard-us",
+        IME_Target = "hangul",
+      },
+    },
+    wsl = {
+      IME_ENG = "eng_wsl",
+      IME_Target = "tgt_wsl",
+    },
+    windows = {
+      IME_ENG = "eng_win",
+      IME_Target = "tgt_win",
+    },
+    debug = false,
+    imSelectPath = "",
+  },
+}
 
-function M.set(ime_target, ime_eng, debug_mode)
-    if ime_target ~= "" then
-        vim.g.IME_Target = ime_target
-    end
-    vim.g.IME_Target = ime_target
-    if ime_eng ~= "" then
-        vim.g.IME_ENG = ime_eng
-    end
-    vim.g.imac_DEBUGMODE = debug_mode
+function M.set(config, root)
+  local conf = M.default
+  local conf = vim.tbl_deep_extend("force", conf, config)
 
-    M.getOS()
-
-    if vim.g.imac_DEBUGMODE == true then
-        print("Options: [Target:" .. ime_target .. " | Eng: " .. ime_eng .. " | Debug: " .. tostring(debug_mode) .. ']')
-    end
-end
-
-function M.getOS()
-    local handle = io.popen("uname")
-    if handle ~= nil then
+  local handle = io.popen("grep -i Microsoft /proc/version")
+  if handle ~= nil then
+    local result = string.gsub(handle:read("*a"), "[\n\r]", "")
+    handle:close()
+    if result ~= "" then
+      root.state.is_wsl = true
+    else
+      local handle = io.popen("uname")
+      if handle ~= nil then
         local result = string.gsub(handle:read("*a"), "[\n\r]", "")
         handle:close()
         if result == "Linux" then
-            vim.g.imac_linux = true
-            return
+          root.state.is_linux = true
+        elseif result == "Darwin" then
+          root.state.is_macos = true
+        else
+          root.state.is_windows = true
         end
-        if result == "Darwin" then
-            vim.g.imac_macos = true
-            return
-        end
-        vim.g.imac_windows = true
+        root.state.config = conf
+      end
     end
+  end
+
+  root.state.DEBUG_MODE = conf.debug
 end
 
 return M
