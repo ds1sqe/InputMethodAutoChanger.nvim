@@ -59,7 +59,7 @@ function M.set(config, root)
   root.state.DEBUG_MODE = conf.debug
 end
 
-function M.check_remote()
+function M.check_remote(root)
   local pstree = io.popen(
     "pstree -p"
   )
@@ -72,6 +72,7 @@ function M.check_remote()
       )
       if has_sshd ~= nil then
         local egrep_rst = has_sshd:read("*a")
+        has_sshd:close()
         return egrep_rst ~= ""
       end
     end
