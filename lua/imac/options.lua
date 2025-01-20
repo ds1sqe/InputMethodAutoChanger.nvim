@@ -55,8 +55,29 @@ function M.set(config, root)
       end
     end
   end
+  root.state.is_remote = M.check_remote()
 
   root.state.DEBUG_MODE = conf.debug
+end
+
+function M.check_remote()
+  local pstree = io.popen(
+    "pstree -p"
+  )
+  if pstree ~= nil then
+    local ps_tree_result = pstree:read("*a")
+    pstree:close()
+    if ps_tree_result ~= "" then
+      local has_sshd = io.popen(
+        "egrep --quiet --extended-regexp \".*sshd.*\\($$\\)\" " .. ps_tree_result
+      )
+      if has_sshd ~= nil then
+        local egrep_rst = has_sshd:read("*a")
+        return egrep_rst ~= ""
+      end
+    end
+  end
+  return false
 end
 
 return M

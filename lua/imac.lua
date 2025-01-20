@@ -16,19 +16,23 @@ local M = {
     is_linux = false,
     is_macos = false,
     is_windows = false,
+    is_remote = false,
   }
 }
 
--- Setup function. you can use this at your main config , like require('imac').setup("hangul","xkb:us::eng",false)
--- @param ime_Target => target inputMethod, Non English ex) "hangul"
--- @param ime_eng => Eng inputMethod, English ex) "xkb:us::eng"
--- @param debug_mode => debug mode , True or False ex) "true"
+-- Setup function. you can use this at your main config , like require('imac').setup({"OPTIONS"})
 function M.setup(config)
   require("imac.options").set(config, M)
 
   M.load()
   if M.DEBUG_MODE then
     print("IMAC> loaded config:" .. M.inspect(M))
+  end
+
+  if M.state.is_remote then
+    if M.DEBUG_MODE then
+      print("IMAC> disabled due to is remote" .. M.inspect(M))
+    end
   end
 
   local inputMethodAutoChanger = vim.api.nvim_create_augroup("InputMethodAutoChanger", { clear = true })
