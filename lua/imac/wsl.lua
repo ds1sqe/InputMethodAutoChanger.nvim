@@ -16,7 +16,12 @@ function M.setup(config)
 end
 
 function M.set_lang(inputMethoad)
-  os.execute(M.im_select_path .. " " .. inputMethoad)
+  -- os.execute(M.im_select_path .. " " .. inputMethoad)
+  local handle = io.popen(M.im_select_path .. " " .. inputMethoad)
+  if handle ~= nil then
+    local _ = handle:read("*a")
+    handle:close()
+  end
 end
 
 function M.get_language()
