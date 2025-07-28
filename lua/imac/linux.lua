@@ -64,7 +64,7 @@ function M.to_eng()
   if M.ime == "ibus" then
     os.execute("ibus engine " .. M.config.linux.ibus.IME_ENG)
   elseif M.ime == "fcitx" then
-    os.execute("fcitx5-remote -c")
+    os.execute("fcitx5-remote -s " .. M.config.linux.fcitx.IME_ENG)
   end
 end
 
@@ -72,7 +72,7 @@ function M.to_target()
   if M.ime == "ibus" then
     os.execute("ibus engine " .. M.config.linux.ibus.IME_Target)
   elseif M.ime == "fcitx" then
-    os.execute("fcitx5-remote -o")
+    os.execute("fcitx5-remote -s " .. M.config.linux.fcitx.IME_Target)
   end
 end
 
